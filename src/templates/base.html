@@ -1,0 +1,42 @@
+{% load static %}
+{% load blog_tags %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Custom Template Tags</title>
+    <link rel="stylesheet" href="{% static "/blog/css/main.css" %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      <div class='sidebar'>
+      <h3 style="text-align:center"><u>Latest Posts</u></h3>
+      <br>
+      {% latest_posts %}
+      <hr>
+      <h4 style="text-align:center"><u>Most commented posts</u></h4>
+      <br>
+      {% most_commented as most_commented_posts %}
+      {% for post in most_commented_posts %}
+      <ul>
+
+      <li><p><a href="{{post.get_absolute_url}}">{{post.title}}</a></p></li>
+
+      </ul>
+      {% endfor %}
+      </div>
+      <div class="content">
+
+
+      <h2 style="text-align:center">Welcome to my blog</h2>
+      <hr>
+      <h3>It has {% total_posts %} posts</h3>
+      <hr>
+      <h2>Here are some links for you :</h2>
+      <br>
+      <h3><a href="{% url 'blog:post_list' %}">List of all Posts</a></h3>
+      </div>
+
+
+  </body>
+</html>

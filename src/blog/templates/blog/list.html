@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>List-Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+
+<div class="ever" style="margin-left:12px">
+
+    {% if tag %}
+    <h2 style="margin-top:15px">List of all posts with {{tag.name}} tag</h2>
+    <hr>
+    {% for post in posts %}
+    <a href="{{post.get_absolute_url}}" style="font-size:25px">-> {{post.title}}</a>
+    <br>
+    {% endfor %}
+
+    {% else %}
+    <h2>List of all Posts</h2>
+    <hr>
+    {% for post in posts %}
+      <a href="{{post.get_absolute_url}}"><h3>{{post.title}}</h3></a>
+      <p>{{post.body}}</p>
+
+    {% endfor %}
+    <hr>
+    <h2>List of all tags</h2>
+    {% for tag in tags %}
+    <a href="">{{tag.name}}</a>
+    {% endfor %}
+    {% endif %}
+    </div>
+
+  </body>
+</html>
